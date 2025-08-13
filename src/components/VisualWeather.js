@@ -19,7 +19,7 @@ const VisualWeather = ({ lat, lon }) => {
     if (!lat || !lon) return;
 
     setLoading(true);
-    // Using Visual Crossing API, update URL to use lat & lon in place of fixed location
+    
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${lat},${lon}?unitGroup=us&key=2NTRTWQJUANFGFLZW7FNC2HDZ&contentType=json`;
 
     fetch(url)
@@ -42,10 +42,10 @@ const VisualWeather = ({ lat, lon }) => {
     return <div>Weather data not available.</div>;
   }
 
-  // Pick icon based on current condition keyword (simplified)
+  
   const currentCondition = weatherData.currentConditions.conditions;
-  // Find matching icon (use first matching key)
-  let icon = '🌈'; // default icon
+  
+  let icon = '🌈'; 
   for (const key of Object.keys(weatherIcons)) {
     if (currentCondition.toLowerCase().includes(key.toLowerCase())) {
       icon = weatherIcons[key];
@@ -83,7 +83,7 @@ const VisualWeather = ({ lat, lon }) => {
         }}
       >
         {weatherData.days.slice(0, 5).map((day, index) => {
-          // Pick forecast icon
+          
           let forecastIcon = '🌈';
           for (const key of Object.keys(weatherIcons)) {
             if (day.conditions.toLowerCase().includes(key.toLowerCase())) {
